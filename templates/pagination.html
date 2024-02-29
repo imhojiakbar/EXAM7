@@ -1,0 +1,20 @@
+<div class="row">
+
+
+    <div class="col-12" style="text-align: center">
+        {% if  page_obj.has_previous %}
+
+            <a href="{% url 'main:explore' %}?page=1">first</a>
+            <a href="{% url 'main:explore' %}?page={{ page_obj.previous_page_number }}">{{ page_obj.previous_page_number }}</a>
+        {% endif %}
+        {{ page_obj.number }}
+        {% if  page_obj.has_next %}
+            <a href="{% url 'main:explore' %}?page={{ page_obj.next_page_number }}">{{ page_obj.next_page_number }}</a>
+            <a href="{% url 'main:explore' %}?page={{ num_pages }}">last</a>
+        {% endif %}
+
+
+
+    </div>
+
+</div>

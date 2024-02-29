@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block body %}
+    <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+                <div class="content-section">
+                        <form method="post" action="{% url 'main:product-create' %}">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+
+                            <div class="form-group">
+                                <button class="btn btn-outline-info" type="submit">Post</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+              </div>
+            </main>
+
+{% endblock %}

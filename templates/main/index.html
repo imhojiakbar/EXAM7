@@ -1,0 +1,337 @@
+{% extends 'base.html' %}
+{% load static %}
+  <!-- ***** Main Banner Area Start ***** -->
+{% block body %}
+  <div class="main-banner">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 align-self-center">
+          <div class="header-text">
+            <h6>Liberty NFT Market</h6>
+            <h2>Create, Sell &amp; Collect Top NFT’s.</h2>
+            <p>Liberty NFT Market is a really cool and professional design for your NFT websites. This HTML CSS template is based on Bootstrap v5 and it is designed for NFT related web portals. Liberty can be freely downloaded from TemplateMo's free css templates.</p>
+            <div class="buttons">
+              <div class="border-button">
+                <a href="{% url 'main:item_list' %}">Explore Top NFTs</a>
+              </div>
+              <div class="main-button">
+                <a href="https://youtube.com/templatemo" target="_blank">Watch Our Videos</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+          <div class="owl-banner owl-carousel">
+            <div class="item">
+              <img src="{% static 'assets/images/banner-01.png' %}" alt="">
+            </div>
+            <div class="item">
+              <img src="{% static 'assets/images/banner-02.png' %}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Main Banner Area End ***** -->
+
+  <div class="categories-collections">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="categories">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="section-heading">
+                  <div class="line-dec"></div>
+                  <h2>Browse Through Our <em>Categories</em> Here.</h2>
+                </div>
+              </div>
+                {% for category in categories %}
+              <div class="col-lg-2 col-sm-6">
+                <div class="item">
+                  <div class="icon">
+                    <img src="{% static 'assets/images/icon-01.png' %}" alt="">
+                  </div>
+                  <h4>{{ category.name }}</h4>
+                  <div class="icon-button">
+                    <a href="{% url 'main:category_list' category.pk %}"><i class="fa fa-angle-right"></i></a>
+                  </div>
+                </div>
+              </div>
+                {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+            <div class="col-lg-12">
+          <div class="collections">
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="section-heading">
+                  <div class="line-dec"></div>
+                  <h2> <em>Explore Some Hot {{ category }}s In Market.</em> </h2>
+                </div>
+              </div>
+              <div class="col-lg-12">
+                <div class="owl-collection owl-carousel">
+                    {% for item in items %}
+                  <div class="item">
+                    <img src={{ item.image.url }} alt="">
+                    <div class="down-content">
+                      <h4>{{ item.title}}</h4>
+                      <span class="collection">Item Id:<br><strong>{{ item.pk }}</strong></span>
+                      <span class="category">Category:<br><strong>{{ item.category}}</strong></span>
+                      <div class="main-button">
+                        <a href="{% url 'main:details' item.pk %}">Explore {{ item.title }}</a>
+                      </div>
+                    </div>
+                  </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+  <div class="create-nft">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+          <div class="section-heading">
+            <div class="line-dec"></div>
+            <h2>Create Your NFT & Put It On The Market.</h2>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="main-button">
+            {% if request.user.is_authenticated %}
+            <a href="{% url 'main:create' %}">Create Your NFT Now</a>
+                 {% else %}
+           <a href="{% url 'users:login-page' %}">Create Your NFT Now</a>
+              {% endif %}
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item first-item">
+            <div class="number">
+              <h6>1</h6>
+            </div>
+            <div class="icon">
+              <img src="{% static 'assets/images/icon-02.png' %}" alt="">
+            </div>
+            <h4>Set Up Your Wallet</h4>
+            <p>NFT means Non-Fungible Token that are used in digital cryptocurrency markets. There are many different kinds of NFTs in the industry.</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item second-item">
+            <div class="number">
+              <h6>2</h6>
+            </div>
+            <div class="icon">
+              <img src="{% static 'assets/images/icon-04.png' %}" alt="">
+            </div>
+            <h4>Add Your Digital NFT</h4>
+            <p>There are 5 different HTML pages included in this NFT <a href="https://templatemo.com/page/1" target="_blank" rel="nofollow">website template</a>. You can edit or modify any section on any page as you required.</p>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="item">
+            <div class="icon">
+              <img src="{% static 'assets/images/icon-06.png' %}" alt="">
+            </div>
+            <h4>Sell Your NFT &amp; Make Profit</h4>
+            <p>If you would like to support our TemplateMo website, please visit <a rel="nofollow" href="https://templatemo.com/contact" target="_parent">our contact page</a> to make a PayPal contribution. Thank you.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="currently-market">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="section-heading">
+            <div class="line-dec"></div>
+            <h2><em>Items</em> Currently In The Market.</h2>
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="filters">
+            <ul>
+              <li data-filter="*"  class="active">All Items</li>
+              <li data-filter=".msc">Music Art</li>
+              <li data-filter=".dig">Digital Art</li>
+              <li data-filter=".blc">Blockchain</li>
+              <li data-filter=".vtr">Virtual</li>
+            </ul>
+          </div>
+        </div>
+        <div class="col-lg-12">
+          <div class="row grid">
+            {% if item4 %}
+            <div class="col-lg-6 currently-market-item all msc">
+              <div class="item">
+                <div class="left-image">
+                  <img src={{ item4.image.url}}" alt="" style="border-radius: 20px; min-width: 195px;">
+                </div>
+                <div class="right-content">
+                  <h4>Music Art Super Item</h4>
+                  <span class="author">
+                    <img src={{ item4.author.avatar.url}}" alt="" style="max-width: 50px; border-radius: 50%;">
+                    <h6>{{ item4.author.first_name}} {{ item4.author.last_name}}<br><a href="{% url 'main:author' item4.author.username%}">{{ item4.author.email}}</a></h6>
+                  </span>
+                  <div class="line-dec"></div>
+                  <span class="bid">
+                    Current Bid<br><strong>{{ item4.price}} ETH</strong><br><em>($6,600.00)</em>
+                  </span>
+                  <span class="ends">
+                    Ends In<br><strong>6D 05H 40M 50S</strong><br><em>({{ item4.ends_in}})</em>
+                  </span>
+                  <div class="text-button">
+                    <a href="{% url 'main:details' item4.pk %}">View Item Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if item2 %}
+            <div class="col-lg-6 currently-market-item all dig">
+              <div class="item">
+                <div class="left-image">
+                  <img src={{ item2.image.url }} alt="" style="border-radius: 20px; min-width: 195px;">
+                </div>
+                <div class="right-content">
+                  <h4>Digital Crypto Artwork</h4>
+                  <span class="author">
+                    <img src={{ item2.author.avatar.url}}" alt="" style="max-width: 50px; border-radius: 50%;">
+                    <h6>{{ item2.author.first_name}} {{ item2.author.last_name}}<br><a href="{% url 'main:author' item2.author.username%}">{{ item2.author.email}}</a></h6>
+                  </span>
+                  <div class="line-dec"></div>
+                  <span class="bid">
+                    Current Bid<br><strong>{{ item2.price}} ETH</strong><br><em>($6,600.00)</em>
+                  </span>
+                  <span class="ends">
+                    Ends In<br><strong>6D 05H 40M 50S</strong><br><em>({{ item2.ends_in}})</em>
+                  </span>
+                  <div class="text-button">
+                    <a href="{% url 'main:details' item2.pk %}">View Item Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if item01 %}
+            <div class="col-lg-6 currently-market-item all blc">
+              <div class="item">
+                <div class="left-image">
+                  <img src={{ item01.image.url }} alt="" style="border-radius: 20px; min-width: 195px;">
+                </div>
+                <div class="right-content">
+                  <h4>Blockchain Item One</h4>
+                  <span class="author">
+                    <img src={{ item01.author.avatar.url}}" alt="" style="max-width: 50px; border-radius: 50%;">
+                    <h6>{{ item01.author.first_name}} {{ item01.author.last_name}}<br><a href="{% url 'main:details' item01.author.username%}">{{ item01.author.email}}</a></h6>
+                  </span>
+                  <div class="line-dec"></div>
+                  <span class="bid">
+                    Current Bid<br><strong>{{ item01.price}} ETH</strong><br><em>($6,600.00)</em>
+                  </span>
+                  <span class="ends">
+                    Ends In<br><strong>6D 05H 40M 50S</strong><br><em>({{ item01.ends_in}})</em>
+                  </span>
+                  <div class="text-button">
+                    <a href="{% url 'main:details' item01.pk %}">View Item Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+              {% if item3 %}
+            <div class="col-lg-6 currently-market-item all vtr">
+              <div class="item">
+                <div class="left-image">
+                  <img src={{ item3.image.url }} alt="" style="border-radius: 20px; min-width: 195px;">
+                </div>
+                <div class="right-content">
+                  <h4>Virtual Currency Art</h4>
+                  <span class="author">
+                    <img src={{ item3.author.avatar.url}}" alt="" style="max-width: 50px; border-radius: 50%;">
+                    <h6>{{ item3.author.first_name}} {{ item3.author.last_name}}<br><a href="{% url 'main:author' item3.author.username%}">{{ item3.author.email}}</a></h6>
+                  </span>
+                  <div class="line-dec"></div>
+                  <span class="bid">
+                    Current Bid<br><strong>{{ item3.price}} ETH</strong><br><em>($6,600.00)</em>
+                  </span>
+                  <span class="ends">
+                    Ends In<br><strong>6D 05H 40M 50S</strong><br><em>({{ item3.ends_in}})</em>
+                  </span>
+                  <div class="text-button">
+                    <a href="{% url 'main:details' item3.pk %}">View Item Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+              {% endif %}
+          {% if item5 %}
+            <div class="col-lg-6 currently-market-item all vrt dig">
+              <div class="item">
+                <div class="left-image">
+                  <img src={{ item5.image.url}} alt="" style="border-radius: 20px; min-width: 195px;">
+                </div>
+                <div class="right-content">
+                  <h4>Digital Art Item</h4>
+                  <span class="author">
+                    <img src={{ item5.author.avatar.url}}" alt="" style="max-width: 50px; border-radius: 50%;">
+                    <h6>{{ item5.author.first_name}} {{ item5.author.last_name}}<br><a href="{% url 'main:author' item5.author.username%}">{{ item5.author.email}}</a></h6>
+                  </span>
+                  <div class="line-dec"></div>
+                  <span class="bid">
+                    Current Bid<br><strong>{{ item5.price}} ETH</strong><br><em>($6,600.00)</em>
+                  </span>
+                  <span class="ends">
+                    Ends In<br><strong>6D 05H 40M 50S</strong><br><em>({{ item5.ends_in}})</em>
+                  </span>
+                  <div class="text-button">
+                    <a href="{% url 'main:details' item5.pk %}">View Item Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          {% if item6 %}
+            <div class="col-lg-6 currently-market-item all msc blc">
+              <div class="item">
+                <div class="left-image">
+                  <img src={{ item6.image.url }} alt="" style="border-radius: 20px; min-width: 195px;">
+                </div>
+                <div class="right-content">
+                  <h4>Blockchain Music Design</h4>
+                  <span class="author">
+                    <img src={{ item6.author.avatar.url}}" alt="" style="max-width: 50px; border-radius: 50%;">
+                    <h6>{{ item6.author.first_name}} {{ item6.author.last_name}}<br><a href="{% url 'main:author' item6.author.username%}">{{ item6.author.email}}</a></h6>
+                  </span>
+                  <div class="line-dec"></div>
+                  <span class="bid">
+                    Current Bid<br><strong>{{ item6.price}} ETH</strong><br><em>($6,600.00)</em>
+                  </span>
+                  <span class="ends">
+                    Ends In<br><strong>6D 05H 40M 50S</strong><br><em>({{ item6.ends_in}})</em>
+                  </span>
+                  <div class="text-button">
+                    <a href="{% url 'main:details' item6.pk %}">View Item Details</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
